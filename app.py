@@ -1,5 +1,6 @@
 import tkinter as tk
 from sudoku_board import SudokuBoard
+from menu import Menu
 
 class SudokuApp:
     def __init__(self, root):
@@ -19,6 +20,9 @@ class SudokuApp:
 
         self.clear_button = tk.Button(root, text="Clear", command=self.sudoku_board.clear_board)
         self.clear_button.pack(side=tk.RIGHT)
+
+        # Create the menu
+        self.menu = Menu(self.root)
 
     def check_solution(self):
         if self.sudoku_board.is_valid():

@@ -9,17 +9,27 @@ class SudokuBoard:
         self.create_board()
 
     def generate_sudoku(self):
-        # Generate a valid Sudoku puzzle (simplified version)
+        # Generate a valid Sudoku puzzle using backtracking algorithm
         board = [[0 for _ in range(9)] for _ in range(9)]
-        numbers = list(range(1, 10))
-        for i in range(9):
-            random.shuffle(numbers)
-            for j in range(9):
-                if i % 3 == 0 and j % 3 == 0:
-                    random.shuffle(numbers)
-                board[i][j] = numbers[j]
+        self.solve_sudoku(board, 0, 0)
         self.remove_numbers(board, 40)
         return board
+
+    def solve_sudoku(self, board, row, col):
+        if row == 8 and col == 9:
+            return True
+        if col == 9:
+            row += 1
+            col = 0
+        if board[row][col] != 0:
+            return self.solve_sudoku(board, row, col + 1)
+        for num in range(1, 10):
+            if self.is_valid_move(num, row, col, board):
+                board[row][col] = num
+                if self.solve_sudoku(board, row, col + 1):
+                    return True
+                board[row][col] = 0
+        return False
 
     def remove_numbers(self, board, count):
         while count > 0:
@@ -54,22 +64,33 @@ class SudokuBoard:
     def check_solution(self):
         for i in range(9):
             for j in range(9):
-                if not self.is_valid_move(int(self.cells[i][j].get()), i, j):
+                if not self.is_valid_move(int(self.cells[i][j].get()), i, j, self.board):
                     return False
         return True
 
-    def is_valid_move(self, num, row, col):
+    def is_valid_move(self, num, row, col, board=None):
         # Check row and column
-        for i in range(9):
-            if self.cells[row][i] == str(num) or self.cells[i][col] == str(num):
-                return False
+        if board is None:
+            for i in range(9):
+                if self.cells[row][i] == str(num) or self.cells[i][col] == str(num):
+                    return False
+        else:
+            for i in range(9):
+                if board[row][i] == num or board[i][col] == num:
+                    return False
         # Check 3x3 box
         start_row = (row // 3) * 3
         start_col = (col // 3) * 3
-        for i in range(3):
-            for j in range(3):
-                if self.cells[start_row + i][start_col + j] == str(num):
-                    return False
+        if board is None:
+            for i in range(3):
+                for j in range(3):
+                    if self.cells[start_row + i][start_col + j] == str(num):
+                        return False
+        else:
+            for i in range(3):
+                for j in range(3):
+                    if board[start_row + i][start_col + j] == num:
+                        return False
         return True
 
     def get_board(self):

@@ -9,14 +9,15 @@ class SudokuBoard:
         self.create_board()
 
     def generate_sudoku(self):
-        # Generate a random Sudoku puzzle (simplified version)
+        # Generate a valid Sudoku puzzle (simplified version)
         board = [[0 for _ in range(9)] for _ in range(9)]
         numbers = list(range(1, 10))
         for i in range(9):
+            random.shuffle(numbers)
             for j in range(9):
                 if i % 3 == 0 and j % 3 == 0:
                     random.shuffle(numbers)
-                board[i][j] = numbers[(i * 9 + j) % 9]
+                board[i][j] = numbers[j]
         self.remove_numbers(board, 40)
         return board
 

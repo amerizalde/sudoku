@@ -11,8 +11,9 @@ class SudokuBoard:
     def generate_sudoku(self):
         # Generate a valid Sudoku puzzle using backtracking algorithm
         board = [[0 for _ in range(9)] for _ in range(9)]
-        self.solve_sudoku(board, 0, 0)
-        self.remove_numbers(board, 40)
+        if not self.solve_sudoku(board, 0, 0):
+            raise Exception("Failed to generate a valid Sudoku puzzle")
+        self.remove_numbers(board)
         return board
 
     def solve_sudoku(self, board, row, col):
@@ -31,7 +32,9 @@ class SudokuBoard:
                 board[row][col] = 0
         return False
 
-    def remove_numbers(self, board, count):
+    def remove_numbers(self, board):
+        # Remove numbers to create the final puzzle
+        count = random.randint(40, 50)
         while count > 0:
             i = random.randint(0, 8)
             j = random.randint(0, 8)

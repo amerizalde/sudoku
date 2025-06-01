@@ -36,5 +36,12 @@ class TestSudokuBoard(unittest.TestCase):
                     else:
                         self.fail(f"No valid move found for cell ({i}, {j})")
 
+    def test_no_duplicates_in_subgrids(self):
+        board = self.sudoku_board.board
+        for start_row in range(0, 9, 3):
+            for start_col in range(0, 9, 3):
+                subgrid = [board[row][col] for row in range(start_row, start_row + 3) for col in range(start_col, start_col + 3)]
+                self.assertEqual(len(set(subgrid)), len([num for num in subgrid if num != 0]))
+
 if __name__ == '__main__':
     unittest.main()

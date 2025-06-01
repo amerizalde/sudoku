@@ -76,3 +76,9 @@ class SudokuBoard:
         for row in self.cells:
             board.append([int(cell.get()) if cell else 0 for cell in row])
         return board
+
+    def clear_board(self):
+        for i in range(9):
+            for j in range(9):
+                if isinstance(self.cells[i][j], tk.Entry):
+                    self.cells[i][j].delete(0, tk.END)

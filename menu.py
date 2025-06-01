@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 
 class Menu:
     def __init__(self, root):
@@ -20,4 +21,4 @@ class Menu:
             "2. Each column must contain the numbers 1-9 without repetition.\n"
             "3. Each of the nine 3x3 subgrids must contain the numbers 1-9 without repetition."
         )
-        tk.messagebox.showinfo("Rules of Sudoku", rules_text)
+        messagebox.showinfo("Rules of Sudoku", rules_text)

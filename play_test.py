@@ -21,10 +21,9 @@ def test_player_ai():
     # Test whether the state of board.board represents a valid Sudoku solution
     if not is_valid_sudoku_solution(board.board):
         print("The AI's solution is invalid. Please try again.")
+        ai_player.solve_puzzle()  # Retry solving the puzzle
     else:
         print("The AI's solution is valid.")
-        
-    # if the player's solution is wrong, it needs to be notified so it can try again AI!
 
 def is_valid_sudoku_solution(board):
     # Check for duplicates in rows, columns and subgrids

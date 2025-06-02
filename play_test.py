@@ -17,6 +17,9 @@ def test_player_ai():
     print("Solved Board:")
     for row in board.board:
         print(row)
+        
+    # test whether the state of board.board represents a valid sudoku solution. AI
+    # if not then send a message back to the ai_player that it's solution is wrong and it needs to try again. AI!
 
 if __name__ == "__main__":
     test_player_ai()

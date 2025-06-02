@@ -12,8 +12,11 @@ def test_player_ai():
 
     final_empty_cells = sum(row.count(0) for row in board.board)
     print(f"Final empty cells: {final_empty_cells}")
-    
-    # show the solved board AI!
+
+    # Show the solved board
+    print("Solved Board:")
+    for row in board.board:
+        print(row)
 
 if __name__ == "__main__":
     test_player_ai()

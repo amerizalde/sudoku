@@ -53,3 +53,18 @@ Developed by Andrew Merizalde, with aider on devstral.
 
 ---
 Enjoy solving Sudoku!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+aider --model ollama/devstral:24b --watch-files

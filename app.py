@@ -5,7 +5,7 @@ from menu import Menu
 class SudokuApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Sudoku")
+        self.root.title("Hey there! Welcome to Sudoku")
 
         # Create a frame for the Sudoku board
         self.board_frame = tk.Frame(root)

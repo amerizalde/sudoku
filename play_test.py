@@ -23,6 +23,8 @@ def test_player_ai():
         print("The AI's solution is invalid. Please try again.")
     else:
         print("The AI's solution is valid.")
+        
+    # if the player's solution is wrong, it needs to be notified so it can try again AI!
 
 def is_valid_sudoku_solution(board):
     # Check for duplicates in rows, columns and subgrids
